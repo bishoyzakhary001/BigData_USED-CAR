@@ -1,7 +1,7 @@
 import pandas as pd
 import re
 
-# Leggi il file come testo grezzo
+
 with open('/content/drive/MyDrive/us_used_cars_clean_job1.csv', 'r', encoding='utf-8') as f:
     raw_lines = f.readlines()
 
@@ -36,7 +36,7 @@ for i, line in enumerate(raw_lines):
         print(f"Errore nella riga {i}: {parts} -> {e}")
         continue
 
-# Crea DataFrame
+
 df = pd.DataFrame(cleaned_data, columns=['make', 'model_name', 'price', 'year'])
 
 # Salva in CSV con separatore chiaro

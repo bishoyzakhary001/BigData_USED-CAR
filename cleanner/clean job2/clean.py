@@ -12,8 +12,7 @@ def clean_text(text):
     text = text.lower()
     if "[!@@additional info@@!]" in text:
         text = text.replace("[!@@additional info@@!]", "")
-    # Rimuovi punteggiatura ma lascia numeri e lettere con punto (es. 2.4l)
-    # Per fare questo, sostituisco punteggiatura standard tranne il punto
+    # Rimuovi punteggiatura ma lascia numeri e lettere con punto ,sostituisco punteggiatura standard tranne il punto
     punct_to_remove = string.punctuation.replace('.', '')  # togli il punto da punteggiatura da rimuovere
     text = text.translate(str.maketrans('', '', punct_to_remove))
     return text
@@ -29,9 +28,6 @@ def extract_top_words(row, feature_cols, description_col):
     tokens = text.split()
     # Rimuovi stopwords
     tokens = [word for word in tokens if word not in stop_words]
-    
-    # Filtro speciale per preservare parole con numeri e lettere come "2.4l", "i4"
-    # (già fatto dal clean_text che non toglie il punto)
     
     freq = Counter(tokens)
     top3 = [word for word, count in freq.most_common(3)]
@@ -49,7 +45,6 @@ for chunk in pd.read_csv(input_path, sep=',', chunksize=chunk_size, engine='pyth
     
     chunk['top_words'] = chunk.apply(lambda row: extract_top_words(row, feature_cols, description_col), axis=1)
     
-    # Se vuoi solo alcune colonne in output
     output_cols = ['city', 'year', 'price', 'top_words']
     chunk_output = chunk[output_cols]
     

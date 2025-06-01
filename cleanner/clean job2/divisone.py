@@ -2,16 +2,16 @@ import kagglehub
 import pandas as pd
 import os
 
-# Download latest version and get the path
+
 path = kagglehub.dataset_download("ananaymital/us-used-cars-dataset")
 
 print("Path to dataset files:", path)
 
-# Use the downloaded path as the base path
+
 base_path = path
 
-# Trova il file CSV nel percorso
-dataset_path = None  # Initialize dataset_path to None
+
+dataset_path = None  
 for file in os.listdir(base_path):
     if file.endswith(".csv"):
         dataset_path = os.path.join(base_path, file)

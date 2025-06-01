@@ -1,15 +1,19 @@
+import kagglehub
+import pandas as pd
+import os
+
+
+path = kagglehub.dataset_download("ananaymital/us-used-cars-dataset")
 
 print("Path to dataset files:", path)
 
-# Use the downloaded path as the base path
 base_path = path
-dataset_path = None  # Initialize dataset_path to None
+dataset_path = None  
 for file in os.listdir(base_path):
     if file.endswith(".csv"):
         dataset_path = os.path.join(base_path, file)
         break
 
-# Carica il file
 if dataset_path:
     df = pd.read_csv(dataset_path, low_memory=False)
     print(f"Dataset caricato da: {dataset_path}")
