@@ -1,7 +1,7 @@
 #!/bin/bash
 
-OUTPUT_DIR="/user/bishoyzakhary/job3_result"
-INPUT_DIR="/user/bishoyzakhary/input_job3/us_used_cars_cleaned_job3"
+OUTPUT_DIR="/user/hadoop/outpu/job3_result"
+INPUT_DIR="/user/hadoop/input/us_used_cars_cleaned_job3"
 
 # Elimina output precedente se esiste
 hdfs dfs -rm -r $OUTPUT_DIR
